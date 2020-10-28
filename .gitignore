@@ -8,6 +8,8 @@
 /benchmark/fixtures
 /examples/**/dist
 /coverage
+/build
+/product
 .DS_Store
 *.log
 .idea
