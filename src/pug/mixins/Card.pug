@@ -1,0 +1,33 @@
+mixin CardCaps
+  .card.mb-3
+    img.card-img-top(src='/assets/img/light-yagami.png' alt='...')
+    .card-body
+      h5.card-title Card title
+      p.card-text
+        | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+      p.card-text
+        small.text-muted Last updated 3 mins ago
+
+
+mixin CardOverlay
+  .card.bg-dark.text-white
+    img.card-img(src='/assets/img/light-yagami.png' alt='...')
+    .card-img-overlay
+      h5.card-title Card title
+      p.card-text
+        | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+      p.card-text Last updated 3 mins ago
+
+
+mixin CardHorizontal
+  .card.mb-3(style='max-width: 540px;')
+    .row.g-0
+      .col-md-4
+        img.card-img(src='/assets/img/light-yagami.png' alt='...')
+      .col-md-8
+        .card-body
+          h5.card-title=title
+          p.card-text
+            | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+          p.card-text
+            small.text-muted Last updated 3 mins ago
