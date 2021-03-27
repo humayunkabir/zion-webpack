@@ -35,6 +35,7 @@
     "bootstrap": "^5.0.0-beta3",
     "jquery": "^3.5.1",
     "node-sass": "^4.14.1",
-    "popper.js": "^1.16.1"
+    "popper.js": "^1.16.1",
+    "pug-plain-loader": "^1.1.0"
   }
 }

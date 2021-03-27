@@ -13,7 +13,7 @@ module.exports = merge(config, {
     path: path.resolve(__dirname, 'build'),
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: 'assets/css/[name].[hash].[ext]' }),
+    new MiniCssExtractPlugin({ filename: 'assets/css/[name].[hash].css' }),
     new CleanWebpackPlugin(),
   ],
   module: {

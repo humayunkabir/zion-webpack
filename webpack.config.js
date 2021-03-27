@@ -6,7 +6,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 const pug = {
   test: /\.pug$/,
-  use: ['html-loader', 'pug-html-loader'],
+  use: ['html-loader', 'pug-plain-loader'],
 };
 
 const html = {
@@ -40,6 +40,7 @@ const templates = {
             return new HtmlWebpackPlugin({
               template,
               filename: filename.substr(1, filename.length),
+              inject: false
             });
           })
       )
@@ -59,7 +60,9 @@ const config = {
   },
   plugins: [
     ...templates.resolvedDirs,
-    new HtmlWebpackPugPlugin(),
+    new HtmlWebpackPugPlugin({
+      inject: false
+    }),
     new CopyPlugin({
       patterns: [
         {
