@@ -57,7 +57,7 @@ const cardClick = function() {
   document.querySelector('main').appendChild(playEl);
 
   const showJokeEL = document.createElement('button');
-  showJokeEL.setAttribute('class', 'btn btn-primary rounded-pill float-right')
+  showJokeEL.setAttribute('class', 'btn btn-primary rounded-pill')
   showJokeEL.innerHTML = showJoke ? 'Stop showing joke' : 'Show joke';
   showJokeEL.addEventListener('click', function() {
     showJoke = !showJoke
