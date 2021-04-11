@@ -9,11 +9,12 @@ const config = require('./webpack.config');
 module.exports = merge(config, {
   mode: 'production',
   output: {
-    filename: 'assets/js/[name].[contentHash].bundle.js',
+    filename: 'assets/js/[name].min.js',
     path: path.resolve(__dirname, 'build'),
+    publicPath: ''
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: 'assets/css/[name].[hash].css' }),
+    new MiniCssExtractPlugin({ filename: 'assets/css/[name].min.css' }),
     new CleanWebpackPlugin(),
   ],
   module: {
@@ -24,14 +25,18 @@ module.exports = merge(config, {
       },
       {
         test: /\.(svg|png|jpg|gif)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'assets/img/[name].[hash].[ext]',
-            },
-          },
-        ],
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/img/[name].[hash].[ext]'
+        }
+        // use: [
+        //   {
+        //     loader: 'file-loader',
+        //     options: {
+        //       name: 'assets/img/[name].[hash].[ext]',
+        //     },
+        //   },
+        // ],
       },
     ],
   },

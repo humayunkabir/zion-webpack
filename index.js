@@ -15,3 +15,4 @@ const dir = path.resolve(__dirname, 'src', 'pug');
 //   });
 
 console.log(fs.readdirSync(dir).filter((file) => file.match(/\.pug/)));
+console.log('custom log')
