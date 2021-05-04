@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
+const PugWebpackPlugin = require('pug-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 // const pug = {
@@ -19,24 +19,15 @@ const pug = {
     },
   },
 };
-const jsRule = {
-  test: /\.js$/,
-  exclude: /node_modules/,
-  use: {
-    loader: 'babel-loader',
-    options: {
-      presets: ['@babel/env'],
-      plugins: [
-        '@babel/plugin-proposal-class-properties',
-        '@babel/plugin-transform-runtime',
-      ],
-    },
-  },
-};
 
 const html = {
   test: /\.html$/,
   use: ['html-loader'],
+};
+
+const locals = {
+  name: 'Test',
+  toLowerCase: (string) => string.toLowerCase(),
 };
 
 const templates = {
@@ -60,13 +51,18 @@ const templates = {
               'src',
               dir
             )}/${filename}.pug`;
-            filename = `${dir.split(this.dir.base)[1]}/${filename}.html`;
 
-            return new HtmlWebpackPlugin({
-              chunks: ['app'],
+            return new PugWebpackPlugin({
               template,
-              filename: filename.substr(1, filename.length),
-              inject: true,
+              path: path.resolve(
+                __dirname,
+                `dist/${dir.split(this.dir.base)[1]}`
+              ),
+              options: {
+                filename: `${filename}.html`,
+                pretty: true,
+              },
+              locals,
             });
           })
       )
@@ -77,38 +73,19 @@ const templates = {
 };
 
 module.exports = {
+  mode: 'development',
   entry: {
-    vendor: './src/js/vendor.js',
-    emoji: './src/js/emoji.js',
-    app: ['./src/js/app.js', './src/scss/app.scss'],
     index: './src/pug/index.pug',
   },
   module: {
-    rules: [pug, jsRule],
+    rules: [pug],
   },
 
   plugins: [
-    new CleanWebpackPlugin(),
-    // ...templates.resolvedDirs,
-    // new HtmlWebpackPugPlugin({
-    //     inject: false
+    // new CleanWebpackPlugin(),
+    ...templates.resolvedDirs,
+    // new PugWebpackPlugin({
+    //   template: `${path.resolve(__dirname, 'src', 'pug')}/**/*.pug`,
     // }),
-    new HtmlWebpackPlugin({
-      chunks: ['app'],
-      template: `${path.resolve(__dirname, 'src', 'pug')}/index.pug`,
-      filename: 'index.html',
-      inject: true,
-    }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: './src/assets/img',
-          to: './assets/img',
-        },
-      ],
-    }),
   ],
 };
-
-
-

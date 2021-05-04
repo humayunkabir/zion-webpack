@@ -46,6 +46,7 @@ module.exports = merge(config, {
     ],
   },
   plugins: [
+    // new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({ filename: 'assets/css/[name].min.css' }),
     new CleanWebpackPlugin(),
   ],
