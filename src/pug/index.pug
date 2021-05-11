@@ -12,7 +12,7 @@
 //-     .col
 //-       +CardHorizontal
 
-include mixins/
+include mixins/Card
 
 doctype html
 html(lang="en")
@@ -22,4 +22,4 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title=toLowerCase(name)
   body 
-    h2 Test
+    +CardCaps
